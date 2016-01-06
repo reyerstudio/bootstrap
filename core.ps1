@@ -25,7 +25,7 @@ $dir = resolve-path (appdir 'scoop')
 
 function install_or_update($app) {
   if (installed $app) {
-    scoop update $app
+    scoop update $app -q
   } else {
     scoop install $app
   }
@@ -44,8 +44,9 @@ install_or_update git
 add_bucket extras https://github.com/lukesampson/scoop-extras.git
 add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
 
-# Installing sudo & ra
-install_or_update sudo
+# Installing packages
+$packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget"
+foreach($package in $packages.split(" ")) {
+  install_or_update $package
+}
 install_or_update ra
-
-success "Installation done"
