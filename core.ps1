@@ -19,7 +19,7 @@ if (-Not (installed 'scoop')) {
   scoop update
 }
 
-# Include some helpers
+# Define some helpers
 $dir = resolve-path (appdir 'scoop')
 . "$dir\current\lib\buckets.ps1"
 
@@ -31,17 +31,19 @@ function install_or_update($app) {
   }
 }
 
+function add_bucket($name,$repos) {
+  $dir = bucketdir $name
+  if (-Not (test-path $dir)) {
+    scoop bucket add $name $repos
+  }
+}
+
 # Adding buckets
 # git is required for bucket addition
 install_or_update git
-$dir = bucketdir extras
-if (-Not (test-path $dir)) {
-  scoop bucket add extras https://github.com/lukesampson/scoop-extras.git
-}
-$dir = bucketdir reyer
-if (-Not (test-path $dir)) {
-  scoop bucket add reyer https://github.com/reyerstudio/scoop-reyer.git
-}
+add_bucket extras https://github.com/lukesampson/scoop-extras.git
+add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
 
-# Installing ra
-install_or_update 'ra'
+# Installing sudo & ra
+install_or_update sudo
+install_or_update ra
