@@ -1,0 +1,47 @@
+#requires -v 3
+
+# Remote install
+# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/bootstrap/master/core.ps1')
+$erroractionpreference = 'stop' # quit if anything goes wrong
+
+# Get core functions
+$scoop_core_url = 'https://raw.github.com/lukesampson/scoop/master/lib/core.ps1'
+
+# Installing core environment
+echo 'Installing core environment...'
+iex (new-object net.webclient).downloadstring($scoop_core_url)
+
+# Installing or updating scoop
+if (-Not (installed 'scoop')) {
+  echo "Installing scoop..."
+  iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+} else {
+  scoop update
+}
+
+# Include some helpers
+$dir = resolve-path (appdir 'scoop')
+. "$dir\current\lib\buckets.ps1"
+
+function install_or_update($app) {
+  if (installed $app) {
+    scoop update $app
+  } else {
+    scoop install $app
+  }
+}
+
+# Adding buckets
+# git is required for bucket addition
+scoop install git
+$dir = bucketdir extras
+if (-Not (test-path $dir)) {
+  scoop bucket add extras https://github.com/lukesampson/scoop-extras.git
+}
+$dir = bucketdir reyer
+if (-Not (test-path $dir)) {
+  scoop bucket add reyer https://github.com/reyerstudio/scoop-reyer.git
+}
+
+# Installing ra
+install_or_update 'ra'
