@@ -47,3 +47,5 @@ add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
 # Installing sudo & ra
 install_or_update sudo
 install_or_update ra
+
+success "Installation done"
