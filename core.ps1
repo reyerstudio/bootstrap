@@ -1,7 +1,7 @@
 #requires -v 3
 
 # Remote install
-# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/bootstrap/master/core.ps1')
+# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/core.ps1')
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 # Get core functions
@@ -33,7 +33,7 @@ function install_or_update($app) {
 
 # Adding buckets
 # git is required for bucket addition
-scoop install git
+install_or_update git
 $dir = bucketdir extras
 if (-Not (test-path $dir)) {
   scoop bucket add extras https://github.com/lukesampson/scoop-extras.git
