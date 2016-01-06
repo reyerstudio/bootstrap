@@ -45,7 +45,7 @@ add_bucket extras https://github.com/lukesampson/scoop-extras.git
 add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
 
 # Installing packages
-$packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget"
+$packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget which"
 foreach($package in $packages.split(" ")) {
   install_or_update $package
 }
