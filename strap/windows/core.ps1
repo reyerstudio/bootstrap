@@ -53,7 +53,5 @@ foreach($package in $packages.split(" ")) {
 # Installation Reyer's administration tool
 install_or_update ra
 
-# Changing PowerShell theme
-install_or_update concfg
-sudo concfg import -n solarized small
-install_or_update pshazz
+# Don't continue to install
+success "Close this console and launch another one for further strapping"
