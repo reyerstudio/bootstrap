@@ -3,4 +3,4 @@
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 $name = split-path (whoami) -leaf
-"Hello, $name!"
+"Hello, world! you're logged as $name"

@@ -1,7 +1,7 @@
 #requires -v 3
 
 # Remote install
-# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/core.ps1')
+# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/strap/windows/core.ps1')
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 # Get core functions
