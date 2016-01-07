@@ -44,9 +44,16 @@ install_or_update git
 add_bucket extras https://github.com/lukesampson/scoop-extras.git
 add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
 
-# Installing packages
+# Installing core utils and tools
 $packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget which"
 foreach($package in $packages.split(" ")) {
   install_or_update $package
 }
+
+# Installation Reyer's administration tool
 install_or_update ra
+
+# Changing PowerShell theme
+install_or_update concfg
+sudo concfg import -n solarized small
+install_or_update pshazz
