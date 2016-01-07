@@ -12,6 +12,11 @@ install_or_update dartium
 install_or_update dartium_content_shell
 
 # Configure IDE
-which dart
-which dartium
-which dartium_content_shell
+$dart = resolve-path $(dirname $(dirname $(which dart)))
+$dartium = resolve-path $(scoop which dartium)
+$cs = resolve-path $(scoop which content_shell)
+""
+"Installation directories are following"
+"- Dart SDK      = '$dart'"
+"- Dartium       = '$dartium'"
+"- Content Shell = '$cs'"
