@@ -4,6 +4,8 @@
 # $ ra strap dart
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
+"Installing dart environment..."
+
 # Install dart
 install_or_update dart
 install_or_update dartium
