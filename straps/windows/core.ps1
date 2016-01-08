@@ -1,7 +1,7 @@
 #requires -v 3
 
 # Remote install
-# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/strap/windows/core.ps1')
+# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/straps/windows/core.ps1')
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 # Get core functions
@@ -42,7 +42,7 @@ function add_bucket($name,$repos) {
 # git is required for bucket addition
 install_or_update git
 add_bucket extras https://github.com/lukesampson/scoop-extras.git
-add_bucket reyer https://github.com/reyerstudio/scoop-reyer.git
+add_bucket devstrap https://github.com/reyerstudio/devstrap.git
 
 # Installing core utils and tools
 $packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget which"
@@ -50,7 +50,7 @@ foreach($package in $packages.split(" ")) {
   install_or_update $package
 }
 
-# Installation Reyer's administration tool
+# Installation Rapid Administration tool
 install_or_update ra
 
 # Don't continue to install
