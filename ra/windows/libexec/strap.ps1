@@ -3,7 +3,7 @@
 # Help: Execute remote script related to given 'target'
 param($target)
 
-$strap_base_url='https://raw.github.com/reyerstudio/devstrap/master/strap/windows'
+$strap_base_url='https://raw.github.com/reyerstudio/devstrap/master/straps/windows'
 
 if ($target -eq $null) {
   "ERROR: Missing 'target' module"
