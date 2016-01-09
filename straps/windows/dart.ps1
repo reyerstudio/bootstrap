@@ -4,7 +4,8 @@
 # $ ra strap dart
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
-$dart_path = "~/.pub-cache/bin"
+$pub_cache = $env:PUB_CACHE, "$($env:AppData)\Pub\Cache" | select -first 1
+$dart_path = "$($pub_cache)\bin"
 
 function strapping() {
   "Strapping dart..."
@@ -32,6 +33,9 @@ function unstrapping() {
   scoop uninstall dartium
   scoop uninstall dartium_content_shell
   remove_from_path $dart_path
+  if (test-path $pub_cache) {
+    warning "Following directory could be removed: $(pub_cache)"
+  }
 }
 
 & $action
