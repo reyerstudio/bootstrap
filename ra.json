@@ -1,7 +1,7 @@
 {
-  "version": "0.2.5",
-  "url": "https://github.com/reyerstudio/devstrap/archive/d76e76a257aa262983b202cb338b5d4c09a676a1.zip",
-  "extract_dir": "devstrap-d76e76a257aa262983b202cb338b5d4c09a676a1\\ra\\windows",
-  "hash": "25fcee9a2d02ff69c5903250a897ad94945faa4a6e71332157c8af589ae1879d",
+  "version": "0.2.6",
+  "url": "https://github.com/reyerstudio/devstrap/archive/200f3a379ca4274d93b21c56a700ad4052ac58a4.zip",
+  "extract_dir": "devstrap-200f3a379ca4274d93b21c56a700ad4052ac58a4\\ra\\windows",
+  "hash": "f02695ccd04aa4c8009aa7c10d4988e5f353534648104bfd4f9e7094b2b005c8",
   "bin": [ "bin\\ra.ps1" ]
 }
