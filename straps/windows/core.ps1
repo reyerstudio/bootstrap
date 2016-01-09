@@ -1,11 +1,11 @@
 #requires -v 3
 
 # Remote install
-# $ iex (new-object net.webclient).downloadstring('https://raw.github.com/reyerstudio/devstrap/master/straps/windows/core.ps1')
+# $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/reyerstudio/devstrap/master/straps/windows/core.ps1')
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 # Get core functions
-$scoop_core_url = 'https://raw.github.com/lukesampson/scoop/master/lib/core.ps1'
+$scoop_core_url = 'https://raw.githubusercontent.com/lukesampson/scoop/master/lib/core.ps1'
 
 # Installing core environment
 echo 'Installing core environment...'
