@@ -6,14 +6,14 @@ ARCHIVE_URL="https://github.com/reyerstudio/devstrap/archive"
 
 update_manifest() {
   local NAME=$1
-  LAST_VERSION=$(curl -s $MASTER_URL/$NAME.json | jq -r .version)
+  LAST_VERSION=$(curl -sL $MASTER_URL/$NAME.json | jq -r .version)
   a=( ${LAST_VERSION//./ } )
   ((a[2]++))
   VERSION="${a[0]}.${a[1]}.${a[2]}"
   MANIFEST=$SCRIPTDIR/../$NAME.json
 
   LAST_SHA=$(git rev-parse origin/master)
-  SHASUM=$(curl -s $ARCHIVE_URL/$LAST_SHA.zip | shasum -a 256 - | cut -d' ' -f1)
+  SHASUM=$(curl -sL $ARCHIVE_URL/$LAST_SHA.zip | shasum -a 256 - | cut -d' ' -f1)
   cat <<END > $MANIFEST
 {
   "version": "$VERSION",
@@ -23,8 +23,9 @@ update_manifest() {
   "bin": [ "bin\\\\ra.ps1" ]
 }
 END
-  echo git add $MANIFEST
-  echo git commit -m "$NAME $VERSION"
+  git add $MANIFEST
+  git commit -m "$NAME $VERSION"
+  git push origin master
 }
 
 update_manifest ra
