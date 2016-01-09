@@ -5,4 +5,4 @@ param($target)
 
 $strap_base_url='https://raw.github.com/reyerstudio/devstrap/master'
 
-strap_action 'strapping' $strap_base_url $target
+strap_action 'unstrapping' $strap_base_url $target
