@@ -1,8 +1,7 @@
 {
   "version": "0.2.1",
   "url": "https://github.com/reyerstudio/devstrap/archive/2191016f6dee7f9397c4e5bf20f52071dab35601.zip",
-  "extract_dir": "ra-2191016f6dee7f9397c4e5bf20f52071dab35601",
+  "extract_dir": "ra-2191016f6dee7f9397c4e5bf20f52071dab35601\\ra\\windows",
   "hash": "feeb73d9d9299936e755d2b338b47f4b1729d966a784d49502cb7cc12dba1055",
-  "extract_dir": "ra\\windows",
   "bin": [ "bin\\ra.ps1" ]
 }
