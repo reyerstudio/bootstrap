@@ -13,7 +13,7 @@ if (@($null, '-h', '--help') -contains $cmd) {
 } elseif ($commands -contains $cmd) {
   exec $cmd $args
 } else {
-  "ra: '$cmd' isn't a ra command. See 'concfg help'"
+  "ra: '$cmd' isn't a ra command. See 'ra help'"
   exit 1
 }
 

@@ -1,11 +1,17 @@
 #requires -v 3
-
-# Remote install
-# $ ra strap webstorm
+param($action)
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
-"Installing webstorm environment..."
+function strapping() {
+  "Strapping webstorm..."
+  install_or_update atom
+  create_shortcut "Jetbrains WebStorm" $(scoop which webstorm)
+}
 
-# Install webstorm
-install_or_update webstorm
-create_shortcut "Jetbrains WebStorm" $(scoop which webstorm)
+function unstrapping() {
+  "Unstrapping webstorm..."
+  scoop uninstall atom
+  delete_shortcut "Jetbrains WebStorm"
+}
+
+& $action
