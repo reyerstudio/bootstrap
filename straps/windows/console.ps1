@@ -1,20 +1,15 @@
 #requires -v 3
-param($action)
+
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
-function strapping() {
-  "Strapping console..."
+function install() {
+  "Installing console environment..."
   install_or_update concfg
   sudo concfg import -n solarized small
   $erroractionpreference = 'SilentlyContinue' # workaround for pshazz
   install_or_update pshazz
 }
 
-function unstrapping() {
-  "Unstrapping console..."
-  scoop uninstall pshazz
-  sudo concfg clean
-  scoop uninstall concfg
+function uninstall() {
+  "Uninstalling console environment..."
 }
-
-& $action
