@@ -56,3 +56,15 @@ function add_to_path($dir) {
   $null, $env:path = strip_path $env:path $dir
   $env:path = "$env:path;$dir"
 }
+
+function set_env($name, $value) {
+  env $name $global $value
+  sc env:\$name $value
+}
+
+function unset_env($name) {
+  env $name $global $null
+  if (test-path env:\$name) {
+    rm env:\$name
+  }
+}
