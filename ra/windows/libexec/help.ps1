@@ -33,7 +33,7 @@ function print_summaries {
 $commands = commands
 
 if (!($cmd)) {
-  "usage: ra<command> [<args]
+  "usage: ra <command> [<args]
 Some useful commands are:"
   print_summaries
   "type 'ra help <command>' to get help for a specific command"
