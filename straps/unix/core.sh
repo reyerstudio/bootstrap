@@ -1,9 +1,25 @@
 #!/usr/bin/env bash
 
+# Remote install
+# $ bash <(curl -sL 'https://raw.githubusercontent.com/reyerstudio/devstrap/master/straps/unix/core.sh')
+
 set -x
 set -e
 
 OSNAME="$(uname -s)"
+
+function add_to_path() {
+  local DIR=$1
+  if [[ "$PATH" =~ (^|:)"$DIR"(:|$) ]]; then
+    return 0
+  fi
+  export PATH=$DIR:$PATH
+}
+
+function remove_from_path() {
+  local DIR=$1
+  PATH=$(echo $PATH | sed -e 's;:\?$DIR;;' -e 's;$DIR:\?');
+}
 
 function brew_install_or_upgrade() {
   if brew_is_installed "$1"; then
@@ -49,13 +65,13 @@ function core_linux() {
       # linuxbrew requirements
       sudo apt-get install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
       # ra requirements
-      sudo apt-get install coreutils curl diffutils dos2unix findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
+      sudo apt-get install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
       ;;
     "redhat" | "centos" | "fedora")
       # linuxbrew requirements
       sudo yum yum groupinstall 'Development Tools' && sudo yum install curl git irb m4 python-setuptools ruby texinfo bzip2-devel curl-devel expat-devel ncurses-devel zlib-devel
       # ra requirements
-      # TODO Add ra packages
+      # TODO Add ra packages for yum
       ;;
     *)
       echo "$DISTRIB distribution not supported"
@@ -65,9 +81,8 @@ function core_linux() {
   # Install Homebrew if not installed yet
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
-  # TODO Export only if not yet present
   # Export PATH with linuxbrew
-  export PATH=$PATH:$HOME/.linuxbrew/bin
+  add_to_path $HOME/.linuxbrew/bin
 }
 
 function core_darwin() {
@@ -75,9 +90,6 @@ function core_darwin() {
 
   # Install Homebrew if not installed yet
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  # Install ra requirements
-  brew install dos2unix
 }
 
 function install_ra() {
@@ -87,7 +99,7 @@ function install_ra() {
 
   # Install ra
   brew tap reyerstudio/devstrap https://www.github.com/reyerstudio/devstrap
-  brew_install_or_upgrade devstrap
+  brew_install_or_upgrade reyerstudio/devstrap/ra
 }
 
 case "$OSNAME" in
