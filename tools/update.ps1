@@ -18,7 +18,7 @@ function update_manifest($name) {
   $json.url = "$archiveUrl/$lastSHA.zip"
   $json.extract_dir = "devstrap-$lastSHA\ra\windows"
   $json.hash = $shasum
-  $json | ConvertTo-Json | Out-File $manifest
+  $json | ConvertTo-Json | Out-File $manifest -Encoding UTF8
   git add $manifest
   git commit -m "$name $version"
   git push origin master
