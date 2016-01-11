@@ -14,4 +14,4 @@ function unstrapping() {
   delete_shortcut "Atom"
 }
 
-& $action
+Invoke-Expression "$action"
