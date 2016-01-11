@@ -63,15 +63,15 @@ function core_linux() {
   case "$DISTRIB" in
     "ubuntu" | "debian")
       # linuxbrew requirements
-      sudo apt-get install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
+      sudo apt-get -y install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
       # ra requirements
-      sudo apt-get install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
+      sudo apt-get -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
       ;;
     "redhat" | "centos" | "fedora")
       # linuxbrew requirements
-      sudo yum yum groupinstall 'Development Tools' && sudo yum install curl git irb m4 python-setuptools ruby texinfo bzip2-devel curl-devel expat-devel ncurses-devel zlib-devel
+      sudo yum -y groupinstall 'Development Tools' && sudo yum -y install curl git irb m4 python-setuptools ruby texinfo bzip2-devel curl-devel expat-devel ncurses-devel zlib-devel
       # ra requirements
-      # TODO Add ra packages for yum
+      sudo yum -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial nmap-ncat openssl patch rsync sed sudo tar time vim wget
       ;;
     *)
       echo "$DISTRIB distribution not supported"
