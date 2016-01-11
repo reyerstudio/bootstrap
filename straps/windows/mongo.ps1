@@ -6,9 +6,9 @@ $mongo_ra = '# Usage: ra mongo
 # Summary: Launch mongodb
 # Help: Launch mongodb into $devstrap_home/db/mongo
 
-$db = (Resolve-Path "$devstrap_home\db\mongo")
+ensure "$devstrap_home\db\mongo" > $null
 
-ensure "$db" > $null
+$db = (Resolve-Path "$devstrap_home\db\mongo")
 mongod --nojournal --repair --dbpath "$db"
 mongod --nojournal          --dbpath "$db"
 '
