@@ -1,4 +1,5 @@
 $devstrap = $env:DEVSTRAP_NAME, "devstrap" | select -first 1
+$devstrap_ra_libexec = "$env:LocalAppData\$devstrap\ra\libexec"
 
 function install_or_update($app) {
   if (installed $app) {

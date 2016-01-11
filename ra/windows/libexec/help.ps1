@@ -7,7 +7,11 @@ param($cmd)
 . "$psscriptroot\..\lib\help.ps1"
 
 function print_help($cmd) {
-  $file = gc ("$psscriptroot\$cmd.ps1") -raw
+  if (test-path "$psscriptroot\$cmd.ps1") {
+    $file = gc ("$psscriptroot\$cmd.ps1") -raw
+  } else {
+    $file = gc ("$devstrap_ra_libexec\$cmd.ps1") -raw
+  }
 
   $usage = usage $file
   $summary = summary $file
@@ -19,10 +23,16 @@ function print_help($cmd) {
 
 function print_summaries {
   $commands = @{}
-
   command_files | % {
     $command = command_name $_
     $summary = summary (gc ("$psscriptroot\$_") -raw )
+    if(!($summary)) { $summary = '' }
+    $commands.add("$command ", $summary) # add padding
+  }
+
+  devstrap_command_files | % {
+    $command = command_name $_
+    $summary = summary (gc ("$devstrap_ra_libexec\$_") -raw )
     if(!($summary)) { $summary = '' }
     $commands.add("$command ", $summary) # add padding
   }
