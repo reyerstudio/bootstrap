@@ -17,4 +17,4 @@ function unstrapping() {
   scoop uninstall concfg
 }
 
-& $action
+Invoke-Expression "$action"

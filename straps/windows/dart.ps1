@@ -38,4 +38,4 @@ function unstrapping() {
   }
 }
 
-& $action
+Invoke-Expression "$action"

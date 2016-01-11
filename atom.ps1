@@ -3,15 +3,15 @@ param($action)
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 function strapping() {
-  "Strapping webstorm..."
+  "Strapping atom..."
   install_or_update atom
-  create_shortcut "Jetbrains WebStorm" $(scoop which webstorm)
+  create_shortcut "Atom" $(scoop which atom)
 }
 
 function unstrapping() {
-  "Unstrapping webstorm..."
+  "Unstrapping atom..."
   scoop uninstall atom
-  delete_shortcut "Jetbrains WebStorm"
+  delete_shortcut "Atom"
 }
-
+echo "Action = $action"
 Invoke-Expression "$action"

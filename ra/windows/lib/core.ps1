@@ -36,12 +36,14 @@ function strap_action($action, $url, $target) {
 
     if (test-path $path) {
       "Executing local $path"
-      & (Resolve-Path $path) $action
     } else {
       "Downloading $url/straps/windows/$target.ps1"
-      $script = (new-object net.webclient).downloadstring("$url/straps/windows/$target.ps1")
-      Invoke-Command -Script { Invoke-Expression $script } -Args $action
+      $path = "$env:Temp/$target.ps1"
+      $remote = "$url/straps/windows/$target.ps1"
+      $client = New-Object System.Net.WebClient
+      $client.DownloadFile($remote, $path)
     }
+    Invoke-Expression "$(Resolve-Path $path) $action"
   }
 }
 
