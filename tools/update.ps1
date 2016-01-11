@@ -1,4 +1,4 @@
-#requires -v 3
+﻿#requires -v 3
 
 $masterUrl="https://raw.githubusercontent.com/reyerstudio/devstrap/master"
 $archiveUrl="https://github.com/reyerstudio/devstrap/archive"
@@ -22,17 +22,17 @@ function update($name) {
   $json | ConvertTo-Json | Out-File $manifest -Encoding UTF8
 
   "class Ra < Formula
-    desc \"Bootstrapping development environment\"
-    version "$version"
-    url \"$archiveUrl/$lastSHA.zip\"
-    sha256 \"$shasum\"
+    desc `"Bootstrapping development environment`"
+    version `"$version`"
+    url `"$archiveUrl/$lastSHA.zip`"
+    sha256 `"$shasum`"
 
     bottle :unneeded
 
     def install
-      bin.install     \"ra/unix/bin/ra\"
-      lib.install     Dir[\"ra/unix/lib/*\"]
-      libexec.install Dir[\"ra/unix/libexec/*\"]
+      bin.install     `"ra/unix/bin/ra`"
+      lib.install     Dir[`"ra/unix/lib/*`"]
+      libexec.install Dir[`"ra/unix/libexec/*`"]
     end
   end" | Out-File $formulae -Encoding UTF8
 
