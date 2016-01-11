@@ -1,3 +1,6 @@
+# retain unix line-endings in case checked out on windows
+*.rb text eol=lf
+*.sh text eol=lf
 # retain windows line-endings in case checked out on mac or linux
 * text eol=crlf
 *.exe -text

@@ -49,7 +49,7 @@ function core_linux() {
       # linuxbrew requirements
       sudo apt-get install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
       # ra requirements
-      sudo apt-get install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
+      sudo apt-get install coreutils curl diffutils dos2unix findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
       ;;
     "redhat" | "centos" | "fedora")
       # linuxbrew requirements
@@ -62,6 +62,10 @@ function core_linux() {
       exit 3
   esac
 
+  # Install Homebrew if not installed yet
+  which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+
+  # TODO Export only if not yet present
   # Export PATH with linuxbrew
   export PATH=$PATH:$HOME/.linuxbrew/bin
 }
@@ -71,13 +75,18 @@ function core_darwin() {
 
   # Install Homebrew if not installed yet
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  brew --version
+
+  # Install ra requirements
+  brew install dos2unix
 }
 
 function install_ra() {
+  # Verify and update
+  brew --version
+  brew update
+
   # Install ra
   brew tap reyerstudio/devstrap https://www.github.com/reyerstudio/devstrap
-  brew update && brew cleanup
   brew_install_or_upgrade devstrap
 }
 
@@ -88,3 +97,4 @@ case "$OSNAME" in
   echo "'$OSNAME' not supported"
   exit 1
 esac
+install_ra

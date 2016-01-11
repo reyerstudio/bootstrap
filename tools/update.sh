@@ -26,7 +26,7 @@ update() {
 END_SCOOP
 
   cat <<END_BREW > $FORMULAE
-class Devstrap < Formula
+class Ra < Formula
   desc "Bootstrapping development environment"
   version "$VERSION"
   url "https://github.com/reyerstudio/devstrap/archive/$LAST_SHA.zip"
@@ -39,10 +39,16 @@ class Devstrap < Formula
     lib.install     Dir["ra/unix/lib/*"]
     libexec.install Dir["ra/unix/libexec/*"]
   end
+
+  def post_install
+    system "dos2unix #{bin}/*"
+    system "dos2unix #{lib}/*"
+    system "dos2unix #{libexec}/*"
+  end
 end
 END_BREW
 
-  git add $MANIFEST
+  git add $MANIFEST $FORMULAE
   git commit -m "$NAME $VERSION"
   git push origin master
 }

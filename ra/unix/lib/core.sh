@@ -1,6 +1,9 @@
 function add_to_path() {
   local DIR=$1
-  PATH=$DIR:$PATH
+  if [[ "$PATH" =~ (^|:)"$DIR"(:|$) ]]; then
+    return 0
+  fi
+  export PATH=$DIR:$PATH
 }
 
 function remove_from_path() {
