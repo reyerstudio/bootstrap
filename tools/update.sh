@@ -39,12 +39,6 @@ class Ra < Formula
     lib.install     Dir["ra/unix/lib/*"]
     libexec.install Dir["ra/unix/libexec/*"]
   end
-
-  def post_install
-    system "dos2unix #{bin}/*"
-    system "dos2unix #{lib}/*"
-    system "dos2unix #{libexec}/*"
-  end
 end
 END_BREW
 
