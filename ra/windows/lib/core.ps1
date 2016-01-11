@@ -1,4 +1,5 @@
 $devstrap = $env:DEVSTRAP_NAME, "devstrap" | select -first 1
+$devstrap_home = "~\$devstrap"
 $devstrap_ra_libexec = "$env:LocalAppData\$devstrap\ra\libexec"
 
 function install_or_update($app) {
@@ -70,4 +71,13 @@ function unset_env($name) {
   if (test-path env:\$name) {
     rm env:\$name
   }
+}
+
+function install_ra_cmd($name, $script) {
+  ensure "$devstrap_ra_libexec" > $null
+  $script | Out-File "$devstrap_ra_libexec\$name.ps1" -Encoding UTF8
+}
+
+function uninstall_ra_cmd($name) {
+  rm "$devstrap_ra_libexec\$name.ps1"
 }
