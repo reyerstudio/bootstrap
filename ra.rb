@@ -1,8 +1,8 @@
 class Ra < Formula
   desc "Bootstrapping development environment"
-  version "0.2.18"
-  url "https://github.com/reyerstudio/devstrap/archive/fcbdc20b699ad042df81b874ed18a08e755b8939.zip"
-  sha256 "d0f73c0874d54ee86f309315c9fe79b4098d98acd6f5d093067b7c35aeb23262"
+  version "0.2.19"
+  url "https://github.com/reyerstudio/devstrap/archive/b765cee559ff2e735c5fc344be1fc63b127c8da3.zip"
+  sha256 "fd04da3ab70b5d14ac6e6d71d6c4979b1ecf60c507d5f782b1c49b088d0b81d8"
 
   bottle :unneeded
 
