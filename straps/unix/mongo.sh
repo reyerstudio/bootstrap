@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 local ACTION=$1
 
-MONGO_RA = '# Usage: ra mongo
+MONGO_RA='# Usage: ra mongo
 # Summary: Launch mongodb
 # Help: Launch mongodb into $DEVSTRAP_HOME/db/mongo
 
