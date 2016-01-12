@@ -38,7 +38,7 @@ function print_help() {
   local HELP=$(extract_help $FILE)
 
   [ -z "$USAGE" ] || echo "$USAGE"
-  [ -z "$HELP" ] || echo -n -e "\n$HELP"
+  [ -z "$HELP" ] || echo -e "\n$HELP"
 }
 
 function print_summaries() {

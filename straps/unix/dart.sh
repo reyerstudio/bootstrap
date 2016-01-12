@@ -9,10 +9,8 @@ function strapping() {
       brew install dart --with-dartium --with-content-shell
       ;;
     "ubuntu")
-      sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
-      sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
-      sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
-      sudo apt-get -y install dart
+      brew tap reyerstudio/linuxbrew-dart https://github.com/reyerstudio/linuxbrew-dart
+      brew install dart --with-dartium --with-content-shell
       ;;
     *)
       echo "$DISTRIB not supported"
@@ -28,7 +26,8 @@ function unstrapping() {
       brew untap dart-lang/dart
       ;;
     "ubuntu")
-      sudo apt-get -y remove dart
+      brew uninstall dart
+      brew untap reyerstudio/linuxbrew-dart
       ;;
     *)
       echo "$DISTRIB not supported"
