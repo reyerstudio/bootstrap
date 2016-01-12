@@ -66,6 +66,8 @@ function core_linux() {
       sudo apt-get -y install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
       # ra requirements
       sudo apt-get -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
+      # Enable HTTPS for apt
+      sudo apt-get -y apt-transport-https
       ;;
     "redhat" | "centos" | "fedora")
       # linuxbrew requirements
