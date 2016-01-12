@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Usage: ra help <command>
 # Summary: Show help for a command
 local CMD=$1

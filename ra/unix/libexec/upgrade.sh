@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Usage: ra upgrade [app]
 # Summary: Upgrade apps
 # Help: 'ra upgrade' upgrades all apps to the latest version.

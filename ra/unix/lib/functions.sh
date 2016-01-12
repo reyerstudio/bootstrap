@@ -1,6 +1,7 @@
 DEVSTRAP=$DEVSTRAP_NAME
 [ -z "$DEVSTRAP" ] && DEVSTRAP="devstrap"
 DEVSTRAP_HOME="$HOME/$DEVSTRAP"
+DEVSTRAP_RA_PROFILE="$HOME/.$DEVSTRAP/ra/profile.d"
 DEVSTRAP_RA_LIBEXEC="$HOME/.$DEVSTRAP/ra/libexec"
 
 function commands() {
@@ -97,4 +98,16 @@ function install_ra_cmd() {
 function uninstall_ra_cmd() {
   local NAME=$1
   rm -f "$DEVSTRAP_RA_LIBEXEC/$NAME.sh"
+}
+
+function install_ra_init() {
+  local NAME=$1
+  local SCRIPT=$2
+  mkdir -p "$DEVSTRAP_RA_PROFILE"
+  echo "$SCRIPT" > "$DEVSTRAP_RA_PROFILE/$NAME.sh"
+}
+
+function uninstall_ra_init() {
+  local NAME=$1
+  rm -f "$DEVSTRAP_RA_PROFILE/$NAME.sh"
 }

@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 local ACTION=$1
 
+DART_RA_INIT='# pub global
+CACHE=$PUB_CACHE
+[ -z "$PUB_CACHE" ] && CACHE="$HOME/.pub-cache"
+DART_PATH="$CACHE/bin"
+
+add_to_path "$DART_PATH"
+'
+
 function strapping() {
   echo "Strapping dart..."
   case "$DISTRIB" in
@@ -16,6 +24,7 @@ function strapping() {
       echo "$DISTRIB not supported"
       ;;
   esac
+  install_ra_init dart "$DART_RA_INIT"
 }
 
 function unstrapping() {
@@ -33,6 +42,7 @@ function unstrapping() {
       echo "$DISTRIB not supported"
       ;;
   esac
+  uninstall_ra_init dart
 }
 
 $ACTION
