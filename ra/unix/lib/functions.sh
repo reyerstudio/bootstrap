@@ -60,3 +60,29 @@ function brew_is_upgradable() {
 function brew_expand_alias() {
   brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
 }
+
+function strap_action() {
+  local ACTION=$1
+  local URL=$2
+  local TARGET=$3
+  if [ -z "$TARGET" ]; then
+    echo "ERROR: Missing 'target' module"
+    exit 1
+  else
+    FILE=$TARGET
+    if [[ ! $FILE =~ \.sh$ ]]; then
+      FILE="$FILE.sh"
+    fi
+
+    if [ -f $FILE ]; then
+      echo "Executing local $FILE"
+    else
+      echo "Downloading $URL/straps/unix/$TARGET.sh"
+      FILE="/tmp/$TARGET.sh"
+      rm -f $FILE
+      REMOTE="$URL/straps/unix/$TARGET.sh"
+      curl -sL $REMOTE > $FILE
+    fi
+    . $FILE $ACTION
+  fi
+}

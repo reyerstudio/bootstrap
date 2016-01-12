@@ -2,7 +2,7 @@
 # Summary: Upgrade apps
 # Help: 'ra upgrade' upgrades all apps to the latest version.
 # 'ra upgrade <app>' upgrades the latest version of that app, if there is one.
-APP=$1
+local APP=$1
 
 if [ -z "$APP" ]; then
   brew upgrade

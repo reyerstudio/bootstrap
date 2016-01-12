@@ -1,6 +1,6 @@
 # Usage: ra help <command>
 # Summary: Show help for a command
-CMD=$1
+local CMD=$1
 
 function extract_usage() {
   local TEXT=$(cat $1 | grep '^# Usage: ')

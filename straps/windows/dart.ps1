@@ -1,7 +1,5 @@
 #requires -v 3
-
-# Remote install
-# $ ra strap dart
+param($action)
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 $pub_cache = $env:PUB_CACHE, "$($env:AppData)\Pub\Cache" | select -first 1

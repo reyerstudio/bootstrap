@@ -10,9 +10,13 @@ OSNAME="$(uname -s)"
 case "$OSNAME" in
   "Darwin")
     READLINK="greadlink"
+    DISTRIB="osx"
+    DISTRIB_VERSION=$(sw_vers -productVersion)
     ;;
   "Linux")
     READLINK="readlink"
+    DISTRIB=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | sed s/\"//g)
+    DISTRIB_VERSION=$(cat /etc/os-release | grep '^VERSION_ID=' | cut -d'=' -f2 | sed s/\"//g)
     ;;
 esac
 
