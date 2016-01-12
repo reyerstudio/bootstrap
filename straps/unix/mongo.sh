@@ -14,7 +14,7 @@ mongod --nojournal          --dbpath "$DB"
 function strapping() {
   echo "Strapping mongo..."
   brew install mongodb
-  install_ra_cmd mongo $MONGO_RA
+  install_ra_cmd mongo "$MONGO_RA"
   echo "DBs are in $DEVSTRAP_HOME/db/mongo"
 }
 

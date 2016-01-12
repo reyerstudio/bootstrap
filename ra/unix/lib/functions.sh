@@ -91,7 +91,7 @@ function install_ra_cmd() {
   local NAME=$1
   local SCRIPT=$2
   mkdir -p "$DEVSTRAP_RA_LIBEXEC"
-  echo $SCRIPT > "$DEVSTRAP_RA_LIBEXEC/$NAME.sh"
+  echo "$SCRIPT" > "$DEVSTRAP_RA_LIBEXEC/$NAME.sh"
 }
 
 function uninstall_ra_cmd() {
