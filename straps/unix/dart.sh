@@ -17,6 +17,7 @@ function strapping() {
     *)
       echo "$DISTRIB not supported"
       ;;
+  esac
 }
 
 function unstrapping() {
@@ -32,6 +33,7 @@ function unstrapping() {
     *)
       echo "$DISTRIB not supported"
       ;;
+  esac
 }
 
 $ACTION
