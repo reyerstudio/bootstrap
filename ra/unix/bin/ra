@@ -1,3 +1,37 @@
 #!/usr/bin/env bash
 
-echo "ra"
+#set -x
+set -e
+
+CMD=$1
+OSNAME="$(uname -s)"
+
+# Platform specific
+case "$OSNAME" in
+  "Darwin")
+    READLINK="greadlink"
+    ;;
+  "Linux")
+    READLINK="readlink"
+    ;;
+esac
+
+SCRIPTDIR=$(dirname "$($READLINK -f "$0")")
+LIBDIR=$SCRIPTDIR/../lib
+LIBEXECDIR=$SCRIPTDIR/../libexec
+
+. $LIBDIR/functions.sh
+COMMANDS=$(commands)
+
+if [ -z "$CMD" ]; then
+  launch 'help'
+elif [ $CMD == "-h" ] || [ $CMD == "--help" ]; then
+  shift
+  launch 'help' $*
+elif [[ "$COMMANDS" =~ "$CMD" ]]; then
+  shift
+  launch $CMD $*
+else
+  echo "ra: '$CMD' isn't a ra command. See 'ra help'"
+  exit 1
+fi

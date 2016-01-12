@@ -87,6 +87,7 @@ function core_linux() {
 
 function core_darwin() {
   echo "Strapping OSX environement"
+  brew install coreutils
 
   # Install Homebrew if not installed yet
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
