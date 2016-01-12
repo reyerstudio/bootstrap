@@ -4,7 +4,7 @@
 # 'ra upgrade <app>' upgrades the latest version of that app, if there is one.
 APP=$1
 
-if [ -z "$APP" == "" ]; then
+if [ -z "$APP" ]; then
   brew upgrade
 else
   brew upgrade $APP
