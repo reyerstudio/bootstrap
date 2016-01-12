@@ -1,7 +1,7 @@
 DEVSTRAP=$DEVSTRAP_NAME
 [ -z "$DEVSTRAP" ] && DEVSTRAP="devstrap"
 DEVSTRAP_HOME="$HOME/$DEVSTRAP"
-DEVSTRAP_RA_LIBEXEC="./$DEVSTRAP/ra/libexec"
+DEVSTRAP_RA_LIBEXEC="$HOME/.$DEVSTRAP/ra/libexec"
 
 function commands() {
   find $LIBEXECDIR -name "*.sh" | xargs basename -s ".sh"
