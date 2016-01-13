@@ -9,7 +9,7 @@ function strapping() {
   "Strapping webstorm..."
   $exe = download webstorm-windows.exe http://download.jetbrains.com/webstorm/WebStorm-11.0.3.exe
   "Launching $exe..."
-  Start-Process -FilePath $exe -ArgumentList "/S" -Wait
+  Start-Process -FilePath $exe -Wait
   rm $exe
 }
 
@@ -17,7 +17,7 @@ function unstrapping() {
   "Unstrapping webstorm..."
   $extractionPath = (${env:ProgramFiles(x86)}, ${env:ProgramFiles} -ne $null)[0]
   $installDir = Join-Path $extractionPath 'JetBrains'
-  $uninstallExe = (gci "${installDir}/WebStorm 11.0/bin/uninstall.exe").FullName | sort -Descending | Select -first 1
+  $uninstallExe = (gci "${installDir}/WebStorm 11.0.3/bin/uninstall.exe").FullName | sort -Descending | Select -first 1
   Start-Process -FilePath $uninstallExe -ArgumentList "--uninstall" -Wait
 }
 

@@ -9,7 +9,7 @@ function strapping() {
   "Strapping atom..."
   $exe = download atom-windows.exe https://atom.io/download/windows
   "Launching $exe..."
-  Start-Process -FilePath $exe -ArgumentList "--silent" -Wait
+  Start-Process -FilePath $exe -Wait
   $atomFolder = Join-Path $localApplicationData "atom"
   add_to_path "$atomFolder\bin"
   rm $exe
