@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-#set -x
-set -e
-
 CMD=$1
-OSNAME="$(uname -s)"
+
+if [ "$CMD" != "init" ]; then
+  #set -x
+  set -e
+fi
 
 # Platform specific
+OSNAME="$(uname -s)"
 case "$OSNAME" in
   "Darwin")
     READLINK="greadlink"

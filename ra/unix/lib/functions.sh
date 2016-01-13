@@ -105,9 +105,19 @@ function install_ra_init() {
   local SCRIPT=$2
   mkdir -p "$DEVSTRAP_RA_PROFILE"
   echo "$SCRIPT" > "$DEVSTRAP_RA_PROFILE/$NAME.sh"
+  # Enable it in the current session
+  . "$DEVSTRAP_RA_PROFILE/$NAME.sh"
 }
 
 function uninstall_ra_init() {
   local NAME=$1
   rm -f "$DEVSTRAP_RA_PROFILE/$NAME.sh"
+}
+
+function download() {
+  local NAME=$1
+  local URL=$2
+  local FILE="/tmp/$NAME"
+  curl -L -o $FILE $URL
+  RET=$FILE
 }

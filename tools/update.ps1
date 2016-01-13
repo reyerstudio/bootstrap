@@ -1,4 +1,4 @@
-﻿#requires -v 3
+﻿﻿#requires -v 3
 
 $masterUrl="https://raw.githubusercontent.com/reyerstudio/devstrap/master"
 $archiveUrl="https://github.com/reyerstudio/devstrap/archive"
@@ -30,9 +30,7 @@ function update($name) {
     bottle :unneeded
 
     def install
-      bin.install     `"ra/unix/bin/ra`"
-      lib.install     Dir[`"ra/unix/lib/*`"]
-      libexec.install Dir[`"ra/unix/libexec/*`"]
+      bin.install `"ra/unix/bin/ra`"
     end
   end" | Out-File $formulae -Encoding UTF8
 
