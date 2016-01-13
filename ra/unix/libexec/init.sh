@@ -24,8 +24,8 @@ case "$(uname -s)" in
     ;;
 esac
 
-if [ -d "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/libexec" ]; then
-  for i in "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/libexec/*.sh"; do
+if [ -d "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d" ]; then
+  for i in "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d/*.sh"; do
     . $i
   done
 fi
