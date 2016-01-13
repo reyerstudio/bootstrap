@@ -23,10 +23,10 @@ case "$OSNAME" in
 esac
 
 SCRIPTDIR=$(dirname "$($READLINK -f "${BASH_SOURCE[0]}")")
+FUNCDIR=$SCRIPTDIR/../func
 LIBEXECDIR=$SCRIPTDIR/../libexec
-LIBDIR=$LIBEXECDIR/lib
 
-. $LIBDIR/functions.sh
+. $FUNCDIR/functions.sh
 COMMANDS=$(commands)
 
 if [ -z "$CMD" ]; then

@@ -31,6 +31,7 @@ function update($name) {
 
     def install
       bin.install    `"ra/unix/bin/ra`"
+      prefix.install Dir[`"ra/unix/func`"]
       prefix.install Dir[`"ra/unix/libexec`"]
     end
   end" | Out-File $formulae -Encoding UTF8
