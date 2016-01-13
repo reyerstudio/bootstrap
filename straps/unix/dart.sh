@@ -2,11 +2,7 @@
 local ACTION=$1
 
 DART_RA_INIT='# pub global
-CACHE=$PUB_CACHE
-[ -z "$PUB_CACHE" ] && CACHE="$HOME/.pub-cache"
-DART_PATH="$CACHE/bin"
-
-add_to_path "$DART_PATH"
+add_to_path "${PUB_CACHE:-$HOME/.pub-cache}/bin"
 '
 
 function strapping() {

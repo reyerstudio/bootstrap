@@ -2,7 +2,20 @@
 # Usage: ra init
 # Summary: Initialize profile environment
 
-case "$OSNAME" in
+function add_to_path() {
+  local DIR=$1
+  if [[ "$PATH" =~ (^|:)"$DIR"(:|$) ]]; then
+    return 0
+  fi
+  export PATH=$DIR:$PATH
+}
+
+function remove_from_path() {
+  local DIR=$1
+  PATH=$(echo $PATH | sed -e 's;:\?$DIR;;' -e 's;$DIR:\?');
+}
+
+case "$(uname -s)" in
   "Darwin")
     add_to_path "$(brew --prefix)/bin"
     ;;
@@ -11,8 +24,8 @@ case "$OSNAME" in
     ;;
 esac
 
-if [ -d "$DEVSTRAP_RA_PROFILE" ]; then
-  for FILE in $(find "$DEVSTRAP_RA_PROFILE" -name "*.sh"); do
-    . $FILE
+if [ -d "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/libexec" ]; then
+  for i in "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/libexec/*.sh"; do
+    . $i
   done
 fi
