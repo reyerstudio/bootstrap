@@ -1,13 +1,13 @@
 class Ra < Formula
   desc "Bootstrapping development environment"
-  version "0.3.2"
-  url "https://github.com/reyerstudio/devstrap/archive/c092fa0fe31fdc2180cdafa63fabb81a6b558260.zip"
-  sha256 "cced2334f44b11f499f27a564e7bb2fa6d36ed4e2c9cbc9d07b19d93acf5eb5f"
+  version "0.3.3"
+  url "https://github.com/reyerstudio/devstrap/archive/de1ef822c7ef529fda2e683723e176aa0de3f2b8.zip"
+  sha256 "de7ca67a8cd1dea0d55f983461839095a8ae263c172c67cfa445064d1385602a"
 
   bottle :unneeded
 
   def install
-    bin.install "ra/unix/bin/ra"
-    system      "./install.sh", "#{prefix}"
+    bin.install    "ra/unix/bin/ra"
+    prefix.install Dir["ra/unix/libexec"]
   end
 end
