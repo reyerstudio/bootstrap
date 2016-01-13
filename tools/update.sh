@@ -35,9 +35,8 @@ class Ra < Formula
   bottle :unneeded
 
   def install
-    bin.install     "ra/unix/bin/ra"
-    lib.install     Dir["ra/unix/lib/*"]
-    libexec.install Dir["ra/unix/libexec/*"]
+    bin.install "ra/unix/bin/ra"
+    system      "./install.sh", "#{prefix}"
   end
 end
 END_BREW
