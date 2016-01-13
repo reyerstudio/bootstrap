@@ -81,3 +81,9 @@ function install_ra_cmd($name, $script) {
 function uninstall_ra_cmd($name) {
   rm "$devstrap_ra_libexec\$name.ps1"
 }
+
+function download($name, $url) {
+  $file = "$($env:Temp)\$name"
+  curl -L -o $file $url
+  return $file
+}
