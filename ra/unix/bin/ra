@@ -27,7 +27,7 @@ if [ "$CMD" == "init" ]; then
   unset OSNAME
   unset DISTRIB
   unset DISTRIB_VERSION
-  . $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")../libexec/init.sh
+  . $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../libexec/init.sh
 else
   SCRIPTDIR=$(dirname "$($READLINK -f "${BASH_SOURCE[0]}")")
   FUNCDIR=$SCRIPTDIR/../func
