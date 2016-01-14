@@ -18,8 +18,7 @@ function strapping() {
       sudo mkdir -p /opt
       sudo tar xzf "$FILE" -C /opt
       sudo mv /opt/WebStorm-* /opt/webstorm
-      sudo rm -f /usr/local/bin/wstorm
-      sudo ln -s /opt/webstorm/bin/webstorm.sh /usr/local/bin/wstorm
+      /opt/webstorm/bin/webstorm.sh
       rm "$FILE"
       ;;
     *)
@@ -35,7 +34,6 @@ function unstrapping() {
       rm -rf /Applications/WebStorm.app
       ;;
     "debian"|"ubuntu")
-      rm -f /usr/local/bin/wstorm
       rm -rf /opt/webstorm
       ;;
     *)
