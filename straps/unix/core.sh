@@ -67,7 +67,13 @@ function core_linux() {
       # ra requirements
       sudo apt-get -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
       # Enable HTTPS for apt
-      sudo apt-get -y apt-transport-https
+      sudo apt-get -y install apt-transport-https
+      # Install Java 8
+      sudo add-apt-repository ppa:webupd8team/java
+      sudo apt-get -y update
+      echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+      sudo apt-get -y install oracle-java8-installer
+      sudo apt-get -y install oracle-java8-set-default
       ;;
     "redhat" | "centos" | "fedora")
       # linuxbrew requirements
@@ -89,10 +95,14 @@ function core_linux() {
 
 function core_darwin() {
   echo "Strapping OSX environement"
-  brew install coreutils
 
   # Install Homebrew if not installed yet
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+  # ra requirements
+  for FORMULAE in "bash bash-completion colordiff coreutils dialog dos2unix jq mercurial ncdu tree wget"; do
+    brew_install_or_upgrade $FORMULAE
+  done
 }
 
 function install_ra() {
