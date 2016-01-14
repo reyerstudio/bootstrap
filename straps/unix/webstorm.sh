@@ -15,7 +15,7 @@ function strapping() {
       download WebStorm-${WSTORM_VERSION}.tar.gz https://download.jetbrains.com/webstorm/WebStorm-${WSTORM_VERSION}.tar.gz
       FILE=$RET
       sudo rm -rf /opt/webstorm
-      sudo mkdir /opt
+      sudo mkdir -p /opt
       sudo tar xzf "$FILE" -C /opt
       sudo mv /opt/WebStorm-* /opt/webstorm
       sudo rm -f /usr/local/bin/wstorm
