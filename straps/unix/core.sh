@@ -100,7 +100,7 @@ function core_darwin() {
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   # ra requirements
-  for FORMULAE in "bash bash-completion colordiff coreutils dialog dos2unix jq mercurial ncdu tree wget"; do
+  for FORMULAE in $(echo "bash bash-completion colordiff coreutils dialog dos2unix jq mercurial ncdu tree wget"); do
     brew_install_or_upgrade $FORMULAE
   done
 }
