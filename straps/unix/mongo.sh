@@ -15,7 +15,7 @@ function strapping() {
   echo "Strapping mongo..."
   case "$DISTRIB" in
     "osx")
-      brew install mongodb
+      brew_install_or_upgrade mongodb
       ;;
     "ubuntu")
       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -47,7 +47,7 @@ function unstrapping() {
   echo "Unstrapping mongo..."
   case "$DISTRIB" in
     "osx")
-      brew uninstall mongodb
+      brew uninstall --force mongodb
       ;;
     "ubuntu")
       sudo apt-get -y autoremove mongodb-org
