@@ -9,8 +9,7 @@ function strapping() {
   echo "Strapping webstorm..."
   case "$DISTRIB" in
     "osx")
-      which wstorm > /dev/null
-      if [ $? != 0 ]; then
+      if [ ! -f /usr/local/bin/wstorm ]; then
         download WebStorm-${WSTORM_VERSION}-custom-jdk-bundled.dmg https://download.jetbrains.com/webstorm/WebStorm-${WSTORM_VERSION}-custom-jdk-bundled.dmg
         FILE=$RET
         open $FILE -W
@@ -18,8 +17,7 @@ function strapping() {
       fi
       ;;
     "debian"|"ubuntu")
-      which wstorm > /dev/null
-      if [ $? != 0 ]; then
+      if [ ! -f /usr/local/bin/wstorm ]; then
         download WebStorm-${WSTORM_VERSION}.tar.gz https://download.jetbrains.com/webstorm/WebStorm-${WSTORM_VERSION}.tar.gz
         FILE=$RET
         sudo rm -rf /opt/webstorm
@@ -41,8 +39,8 @@ function unstrapping() {
   echo "Unstrapping webstorm..."
   case "$DISTRIB" in
     "osx")
-      rm -f /usr/local/bin/wstorm
       rm -rf /Applications/WebStorm.app
+      rm -f /usr/local/bin/wstorm
       ;;
     "debian"|"ubuntu")
       sudo rm -rf /opt/webstorm
