@@ -5,9 +5,9 @@ DEVSTRAP_RA_PROFILE="$HOME/.$DEVSTRAP/ra/profile.d"
 DEVSTRAP_RA_LIBEXEC="$HOME/.$DEVSTRAP/ra/libexec"
 
 function commands() {
-  find $LIBEXECDIR -name "*.sh" | xargs basename -s ".sh"
+  find $LIBEXECDIR -name "*.sh" | $_XARGS basename -s ".sh"
   if [ -d "$DEVSTRAP_RA_LIBEXEC" ] ; then
-    find $DEVSTRAP_RA_LIBEXEC -name "*.sh" | xargs basename -s ".sh"
+    find $DEVSTRAP_RA_LIBEXEC -name "*.sh" | $_XARGS basename -s ".sh"
   fi
 }
 

@@ -47,7 +47,7 @@ function print_summaries() {
   local CMD
   local SIZE
   local MAX=0
-  for CMD in $(find $LIBEXECDIR -name "*.sh" | xargs basename -s ".sh"); do
+  for CMD in $(find $LIBEXECDIR -name "*.sh" | $_XARGS basename -s ".sh"); do
     CMDS_HELP[$CMD]=$(extract_summary $LIBEXECDIR/$CMD.sh)
     SIZE=${#CMD}
     if [ $SIZE -gt $MAX ]; then
@@ -55,7 +55,7 @@ function print_summaries() {
     fi
   done
   if [ -d $DEVSTRAP_RA_LIBEXEC ]; then
-    for CMD in $(find $DEVSTRAP_RA_LIBEXEC -name "*.sh" | xargs basename -s ".sh"); do
+    for CMD in $(find $DEVSTRAP_RA_LIBEXEC -name "*.sh" | $_XARGS basename -s ".sh"); do
       CMDS_HELP[$CMD]=$(extract_summary $DEVSTRAP_RA_LIBEXEC/$CMD.sh)
       SIZE=${#CMD}
       if [ $SIZE -gt $MAX ]; then
