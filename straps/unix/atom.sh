@@ -16,6 +16,7 @@ function strapping() {
       download atom.deb https://atom.io/download/deb
       FILE=$RET
       sudo dpkg -i $FILE
+      rm -f $FILE
       ;;
     *)
       echo "$DISTRIB not supported"

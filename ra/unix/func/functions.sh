@@ -66,6 +66,7 @@ function strap_action() {
   local ACTION=$1
   local URL=$2
   local TARGET=$3
+  local REMOTE=""
   if [ -z "$TARGET" ]; then
     echo "ERROR: Missing 'target' module"
     exit 1
@@ -84,7 +85,8 @@ function strap_action() {
       REMOTE="$URL/straps/unix/$TARGET.sh"
       curl -sL $REMOTE > $FILE
     fi
-    . $FILE $ACTION
+    source $FILE $ACTION
+    [ ! -z "$REMOTE" ] && rm -f $FILE
   fi
 }
 
