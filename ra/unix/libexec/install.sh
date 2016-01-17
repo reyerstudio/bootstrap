@@ -10,5 +10,14 @@ echo "# <ra version=\"$($SCRIPT version)\">" >  $HOME/.bash_profile
 if [ ! -z "$DEVSTRAP_NAME" ]; then
   echo "export DEVSTRAP_NAME=$DEVSTRAP_NAME" >> $HOME/.bash_profile
 fi
-echo "source $SCRIPT init"                   >> $HOME/.bash_profile
-echo "# </ra>"                               >> $HOME/.bash_profile
+cat <<PROFILE >> $HOME/.bash_profile
+case "\$(uname -s)" in
+  "Darwin")
+  source /usr/local/bin/ra init
+  ;;
+  "Linux")
+  source \$HOME/.linuxbrew/bin/ra init
+  ;;
+esac
+PROFILE
+echo "# </ra>" >> $HOME/.bash_profile
