@@ -41,10 +41,12 @@ function unstrapping() {
   echo "Unstrapping webstorm..."
   case "$DISTRIB" in
     "osx")
+      rm -f /usr/local/bin/wstorm
       rm -rf /Applications/WebStorm.app
       ;;
     "debian"|"ubuntu")
       sudo rm -rf /opt/webstorm
+      sudo rm -f /usr/local/bin/wstorm
       uninstall_ra_init webstorm
       ;;
     *)
