@@ -41,6 +41,7 @@ function unstrapping() {
     "osx")
       rm -rf /Applications/WebStorm.app
       rm -f /usr/local/bin/wstorm
+      rm -rf ~/.WebStorm$(echo $WSTORM_VERSION | cut -d'.' -f1)
       ;;
     "debian"|"ubuntu")
       sudo rm -rf /opt/webstorm
