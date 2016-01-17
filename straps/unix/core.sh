@@ -3,7 +3,7 @@
 # Remote install
 # $ bash <(curl -sL 'https://raw.githubusercontent.com/reyerstudio/devstrap/master/straps/unix/core.sh')
 
-set -x
+#set -x
 set -e
 
 OSNAME="$(uname -s)"

@@ -21,9 +21,7 @@ To deploy **devstrap**, following prerequisites are required.
 - Linux
   - Ubuntu 14.04 LTS x64 (or further) installed
 - Mac
-  - Mac OSX 10.11 and further installed
-  - [Install Xcode](https://developer.apple.com/xcode)
-  - Install Xcode command line developper tools, open a terminal and launch  ```xcode-select --install```
+  - Mac OSX 10.11 (or further) installed
 
 ## Installation
 Installation consists on deploying the core environment for supporting **ra** command.
