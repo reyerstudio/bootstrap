@@ -16,7 +16,7 @@ The goals of **devstrap** are following
 To deploy **devstrap**, following prerequisites are required.
 - Windows
   - Windows 7 and further installed
-  - If you're running on Windows 7, [install PowerShell 3.0](https://www.microsoft.com/en-us/download/details.aspx?id=34595). If you're running on newer version of Windows, skip this step.
+  - If you're running on Windows 7, [install PowerShell 3.0](http://blogs.technet.com/b/heyscriptingguy/archive/2013/06/02/weekend-scripter-install-powershell-3-0-on-windows-7.aspx). If you're running on newer version of Windows, skip this step.
   - Update execution policy (Warning: Don't do that on your servers, it's insecure), open a Powershell terminal and launch ```set-executionpolicy unrestricted -s cu```
 - Linux
   - Ubuntu 14.04 LTS x64 (or further) installed

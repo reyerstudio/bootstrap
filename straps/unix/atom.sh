@@ -19,6 +19,7 @@ function strapping() {
       ;;
     *)
       echo "$DISTRIB not supported"
+      exit 1
       ;;
   esac
 }
