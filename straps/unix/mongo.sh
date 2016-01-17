@@ -32,6 +32,7 @@ function strapping() {
       esac
       sudo apt-get update
       sudo apt-get install -y mongodb-org
+      sudo service mongod stop
       ;;
     *)
       echo "$DISTRIB not supported"
@@ -46,9 +47,10 @@ function unstrapping() {
   echo "Unstrapping mongo..."
   case "$DISTRIB" in
     "osx")
-      brew install mongodb
+      brew uninstall mongodb
       ;;
     "ubuntu")
+      sudo apt-get -y autoremove mongodb-org
       ;;
     *)
       echo "$DISTRIB not supported"
