@@ -22,27 +22,31 @@ case "$OSNAME" in
     ;;
 esac
 
-if [ "$CMD" == "init" ]; then
-  unset CMD
-  source $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../func/init.sh
-else
-  SCRIPTDIR=$(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")
-  FUNCDIR=$SCRIPTDIR/../func
-  LIBEXECDIR=$SCRIPTDIR/../libexec
+case "$CMD" in
+  "init")
+    unset CMD
+    source $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../func/init.sh
+    ;;
+  *)
+    SCRIPT=$($_READLINK -f "${BASH_SOURCE[0]}")
+    SCRIPTDIR=$(dirname $SCRIPT)
+    FUNCDIR=$SCRIPTDIR/../func
+    LIBEXECDIR=$SCRIPTDIR/../libexec
+    CONSOLEDIR=$SCRIPTDIR/../console
 
-  source $FUNCDIR/functions.sh
-  COMMANDS=$(commands)
+    source $FUNCDIR/functions.sh
+    COMMANDS=$(commands)
 
-  if [ -z "$CMD" ]; then
-    launch 'help'
-  elif [ $CMD == "-h" ] || [ $CMD == "--help" ]; then
-    shift
-    launch 'help' $*
-  elif [[ "$COMMANDS" =~ "$CMD" ]]; then
-    shift
-    launch $CMD $*
-  else
-    echo "ra: '$CMD' isn't a ra command. See 'ra help'"
-    exit 1
-  fi
-fi
+    if [ -z "$CMD" ]; then
+      launch 'help'
+    elif [ $CMD == "-h" ] || [ $CMD == "--help" ]; then
+      shift
+      launch 'help' $*
+    elif [[ "$COMMANDS" =~ "$CMD" ]]; then
+      shift
+      launch $CMD $*
+    else
+      echo "ra: '$CMD' isn't a ra command. See 'ra help'"
+      exit 1
+    fi
+esac

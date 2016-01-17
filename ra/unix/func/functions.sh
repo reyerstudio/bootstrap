@@ -15,10 +15,10 @@ function launch() {
   local CMD=$1
   shift
   if [ -f "$LIBEXECDIR/$CMD.sh" ]; then
-    . "$LIBEXECDIR/$CMD.sh" $*
+    source "$LIBEXECDIR/$CMD.sh" $*
   fi
   if [ -f "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" ]; then
-    . "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" $*
+    source "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" $*
   fi
 }
 
@@ -106,7 +106,7 @@ function install_ra_init() {
   mkdir -p "$DEVSTRAP_RA_PROFILE"
   echo "$SCRIPT" > "$DEVSTRAP_RA_PROFILE/$NAME.sh"
   # Enable it in the current session
-  . "$DEVSTRAP_RA_PROFILE/$NAME.sh"
+  source "$DEVSTRAP_RA_PROFILE/$NAME.sh"
 }
 
 function uninstall_ra_init() {

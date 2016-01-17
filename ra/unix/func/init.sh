@@ -25,13 +25,13 @@ case "$(uname -s)" in
 esac
 
 # Source console profile
-for file in "$(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../console/console-*.sh"; do
+for file in $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../console/*.sh; do
   source $file
 done
 
 # Source straps profile
 if [ -d "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d" ]; then
-  for file in "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d/*.sh"; do
+  for file in $HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d/*.sh; do
     source $file
   done
 fi
