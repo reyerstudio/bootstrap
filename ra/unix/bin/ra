@@ -24,16 +24,13 @@ esac
 
 if [ "$CMD" == "init" ]; then
   unset CMD
-  unset OSNAME
-  unset DISTRIB
-  unset DISTRIB_VERSION
-  . $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../libexec/init.sh
+  source $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../func/init.sh
 else
   SCRIPTDIR=$(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")
   FUNCDIR=$SCRIPTDIR/../func
   LIBEXECDIR=$SCRIPTDIR/../libexec
 
-  . $FUNCDIR/functions.sh
+  source $FUNCDIR/functions.sh
   COMMANDS=$(commands)
 
   if [ -z "$CMD" ]; then

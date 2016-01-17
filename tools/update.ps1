@@ -33,6 +33,7 @@ function update($name) {
       bin.install    `"ra/unix/bin/ra`"
       prefix.install Dir[`"ra/unix/func`"]
       prefix.install Dir[`"ra/unix/libexec`"]
+      prefix.install Dir[`"ra/unix/console`"]
     end
   end" | Out-File $formulae -Encoding UTF8
 
