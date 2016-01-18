@@ -62,6 +62,29 @@ function brew_expand_alias() {
   brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
 }
 
+function npm_install_or_upgrade() {
+  if npm_is_installed "$1"; then
+    if npm_is_upgradable "$1"; then
+      npm update -g "$@"
+    fi
+  else
+    npm install -g "$@"
+  fi
+}
+
+function npm_is_installed() {
+  local name="$1"
+
+  npm -j list -g --depth=0 $name > /dev/null
+}
+
+function npm_is_upgradable() {
+  local name="$1"
+
+  npm -j outdated -g "$name" > /dev/null
+  [[ $? -ne 0 ]]
+}
+
 function strap_action() {
   local ACTION=$1
   local URL=$2

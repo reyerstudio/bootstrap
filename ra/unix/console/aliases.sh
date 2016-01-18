@@ -9,10 +9,6 @@ alias -- -="cd -"
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias r="cd ~/${DEVSTRAP_NAME:-devstrap}"
-alias rc="cd ~/${DEVSTRAP_NAME:-devstrap}/contrib"
-alias rr="cd ~/${DEVSTRAP_NAME:-devstrap}/repos"
-alias rw="cd ~/${DEVSTRAP_NAME:-devstrap}/workspace"
 
 # Always enable colored `grep` output
 alias grep='grep --color=auto'

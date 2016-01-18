@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# Usage: ra install
+# Usage: ra install [devstrap_name]
 # Summary: Install profile environment
+
+if [ ! -z "$1" ]; then
+  DEVSTRAP_NAME=$1
+fi
 
 echo "# <ra version=\"$($SCRIPT version)\">"   >  $HOME/.bashrc
 echo '[ -n "$PS1" ] && source ~/.bash_profile' >> $HOME/.bashrc
@@ -13,10 +17,10 @@ fi
 cat <<PROFILE >> $HOME/.bash_profile
 case "\$(uname -s)" in
   "Darwin")
-  source /usr/local/bin/ra init
+    source /usr/local/bin/ra init
   ;;
   "Linux")
-  source \$HOME/.linuxbrew/bin/ra init
+    source \$HOME/.linuxbrew/bin/ra init
   ;;
 esac
 PROFILE
