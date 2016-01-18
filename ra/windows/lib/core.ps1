@@ -10,6 +10,26 @@ function install_or_update($app) {
   }
 }
 
+function npm_install_or_upgrade($name) {
+  if (npm_is_installed($name)) {
+    if (npm_is_upgradable($name)) {
+      npm update -g "$name"
+    }
+  } else {
+    npm install -g "$name"
+  }
+}
+
+function npm_is_installed($name) {
+  npm -j list -g --depth=0 $name > $null
+  return $?
+}
+
+function npm_is_upgradable($name) {
+  npm -j outdated -g "$name" > $null
+  return $?
+}
+
 function create_shortcut($name, $targetPath) {
   $dir = [environment]::getfolderpath("StartMenu") + "\$devstrap"
   ensure $dir > $null
