@@ -36,6 +36,7 @@ function remove_from_path() {
 }
 
 function brew_install_or_upgrade() {
+  echo "Install or upgrade $1"
   if brew_is_installed "$1"; then
     if brew_is_upgradable "$1"; then
       brew upgrade "$@"
@@ -63,6 +64,7 @@ function brew_expand_alias() {
 }
 
 function npm_install_or_upgrade() {
+  echo "Install or upgrade $1"
   if npm_is_installed "$1"; then
     if npm_is_upgradable "$1"; then
       $_NPM update -g "$@"

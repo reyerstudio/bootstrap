@@ -5,7 +5,10 @@ STRAPS="console dart go mongo node"
 OSX_BREW_PACKS="git-flow graphviz hugo"
 UBUNTU_BREW_PACKS="hugo"
 UBUNTU_DEB_PACKS="git-flow graphviz"
-NODE_PACK="bower browser-sync gulp json-server karma karma-cli protractor typescript tsd cordova ios-deploy ios-sim"
+
+NODE_PACKS="bower browser-sync gulp json-server karma karma-cli protractor typescript tsd cordova"
+OSX_NODE_PACKS="ios-deploy ios-sim"
+LINUX_NODE_PACKS=""
 
 REYER_RA_INIT='alias r="cd ~/${DEVSTRAP_NAME:-devstrap}"
 alias rc="cd ~/${DEVSTRAP_NAME:-devstrap}/contrib"
@@ -27,17 +30,23 @@ function strapping() {
     ra strap $PACK
   done
 
-  for PACK in $NODE_PACK; do
+  for PACK in $NODE_PACKS; do
     npm_install_or_upgrade $PACK
   done
 
   case "$DISTRIB" in
     "osx")
+      for PACK in $OSX_NODE_PACKS; do
+        npm_install_or_upgrade $PACK
+      done
       for PACK in $OSX_BREW_PACKS; do
         brew_install_or_upgrade $PACK
       done
       ;;
     "ubuntu")
+      for PACK in $LINUX_NODE_PACKS; do
+        npm_install_or_upgrade $PACK
+      done
       for PACK in $UBUNTU_BREW_PACKS; do
         brew_install_or_upgrade $PACK
       done
