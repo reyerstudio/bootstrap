@@ -11,6 +11,7 @@ function install_or_update($app) {
 }
 
 function npm_install_or_upgrade($name) {
+  "Install or upgrade $name"
   if (npm_is_installed($name)) {
     if (npm_is_upgradable($name)) {
       npm update -g "$name"
