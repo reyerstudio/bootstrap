@@ -3,7 +3,7 @@ param($action)
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
 $devstrap = $env:DEVSTRAP_NAME, "devstrap" | select -first 1
-$devstrap_home = "~\$devstrap"
+$devstrap_home = "$HOME\$devstrap"
 $gopath = "$devstrap_home\go"
 $gobin = "$devstrap_home\go\bin"
 
