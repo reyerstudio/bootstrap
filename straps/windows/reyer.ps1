@@ -10,9 +10,9 @@ function strapping() {
   "Strapping reyer..."
 
   # Reyer environment
-  ensure $HOME\$DEVSTRAP_NAME\contrib   > $null
-  ensure $HOME\$DEVSTRAP_NAME\repos     > $null
-  ensure $HOME\$DEVSTRAP_NAME\workspace > $null
+  ensure $devstrap_home\contrib   > $null
+  ensure $devstrap_home\repos     > $null
+  ensure $devstrap_home\workspace > $null
 
   # Strapping
   foreach($pack in $straps.split(" ")) {
