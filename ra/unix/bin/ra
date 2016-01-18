@@ -4,7 +4,7 @@ CMD=$1
 
 if [ "$CMD" != "init" ]; then
   #set -x
-  set -e
+  #set -e
 fi
 
 # Platform specific
