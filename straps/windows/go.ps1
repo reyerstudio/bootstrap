@@ -12,7 +12,7 @@ function strapping() {
   install_or_update go
   set_env GOPATH $gopath
   add_to_path $gobin
-  "GOPATH is set to $(gopath)"
+  "GOPATH is set to $gopath"
 }
 
 function unstrapping() {
@@ -20,7 +20,7 @@ function unstrapping() {
   scoop uninstall go
   unset_env GOPATH
   remove_from_path $gobin
-  "GOPATH was set to $(gopath)"
+  "GOPATH was set to $gopath"
 }
 
 Invoke-Expression "$action"
