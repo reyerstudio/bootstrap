@@ -2,7 +2,7 @@
 local ACTION=$1
 
 function strapping() {
-  echo "Strapping atom..."
+  echo "Strapping console..."
   case "$DISTRIB" in
     "osx")
       # Enable local BASH as valid shell
@@ -19,12 +19,12 @@ function strapping() {
 }
 
 function unstrapping() {
-  echo "Unstrapping atom..."
+  echo "Unstrapping console..."
   case "$DISTRIB" in
     "osx")
       # Change shell to legacy
-      if [ ! $SHELL == /usr/bin/bash ]; then
-        chsh -s /usr/bin/bash
+      if [ ! $SHELL == /bin/bash ]; then
+        chsh -s /bin/bash
       fi
       ;;
   esac
