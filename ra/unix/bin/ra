@@ -14,12 +14,14 @@ case "$OSNAME" in
   "Darwin")
     _READLINK="greadlink"
     _XARGS="xargs"
+    _NPM="npm"
     DISTRIB="osx"
     DISTRIB_VERSION=$(sw_vers -productVersion)
     ;;
   "Linux")
     _READLINK="readlink"
     _XARGS="xargs -r"
+    _NPM="sudo npm"
     DISTRIB=$(cat /etc/os-release | grep '^ID=' | cut -d'=' -f2 | sed s/\"//g)
     DISTRIB_VERSION=$(cat /etc/os-release | grep '^VERSION_ID=' | cut -d'=' -f2 | sed s/\"//g)
     ;;

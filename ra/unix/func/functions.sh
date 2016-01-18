@@ -65,10 +65,10 @@ function brew_expand_alias() {
 function npm_install_or_upgrade() {
   if npm_is_installed "$1"; then
     if npm_is_upgradable "$1"; then
-      npm update -g "$@"
+      $_NPM update -g "$@"
     fi
   else
-    npm install -g "$@"
+    $_NPM install -g "$@"
   fi
 }
 

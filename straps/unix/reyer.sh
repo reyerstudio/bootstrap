@@ -4,7 +4,7 @@ local ACTION=$1
 STRAPS="console dart go mongo node"
 OSX_BREW_PACKS="git-flow graphviz hugo"
 UBUNTU_BREW_PACKS="hugo"
-UBUNTU_DEB_PACKS="git-flow graphivz"
+UBUNTU_DEB_PACKS="git-flow graphviz"
 NODE_PACK="bower browser-sync gulp json-server karma karma-cli protractor typescript tsd cordova ios-deploy ios-sim"
 
 REYER_RA_INIT='alias r="cd ~/${DEVSTRAP_NAME:-devstrap}"
