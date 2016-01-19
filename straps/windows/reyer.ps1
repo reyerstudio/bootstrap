@@ -2,7 +2,7 @@
 param($action)
 $erroractionpreference = 'stop' # quit if anything goes wrong
 
-$straps="console dart go mongo node"
+$straps="console android dart go mongo node"
 $scoop_packs="git-flow graphviz hugo"
 $node_packs="bower browser-sync gulp json-server karma karma-cli protractor typescript tsd cordova"
 

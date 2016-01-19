@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 local ACTION=$1
 
-STRAPS="console dart go mongo node"
+STRAPS="console android dart go mongo node"
 OSX_BREW_PACKS="git-flow graphviz hugo"
 UBUNTU_BREW_PACKS="hugo"
 UBUNTU_DEB_PACKS="git-flow graphviz"
