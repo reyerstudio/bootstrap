@@ -3,7 +3,7 @@
 CMD=$1
 
 if [ "$CMD" != "init" ]; then
-  echo
+  echo -n
   #set -x
   #set -e
 fi
