@@ -45,7 +45,7 @@ add_bucket extras https://github.com/lukesampson/scoop-extras.git
 add_bucket devstrap https://github.com/reyerstudio/devstrap.git
 
 # Installing core utils and tools
-$packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget which"
+$packages = "7zip coreutils curl diffutils findutils gawk git grep gzip jq less make mercurial netcat openssh openssl patch rsync sed shasum sudo tar time touch vim wget which"
 foreach($package in $packages.split(" ")) {
   install_or_update $package
 }
