@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: ra install [devstrap_name]
+# Usage: ra profile [devstrap_name]
 # Summary: Install profile environment
 
 if [ ! -z "$1" ]; then
@@ -18,10 +18,10 @@ cat <<PROFILE >> $HOME/.bash_profile
 case "\$(uname -s)" in
   "Darwin")
     source /usr/local/bin/ra init
-  ;;
+    ;;
   "Linux")
     source \$HOME/.linuxbrew/bin/ra init
-  ;;
+    ;;
 esac
 PROFILE
 echo "# </ra>" >> $HOME/.bash_profile

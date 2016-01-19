@@ -1,4 +1,4 @@
-# Usage: ra install [devstrap_name]
+# Usage: ra profile [devstrap_name]
 # Summary: Install profile environment
 param($name)
 
