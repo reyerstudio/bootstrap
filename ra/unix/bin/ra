@@ -46,10 +46,10 @@ case "$CMD" in
       launch 'help'
     elif [ $CMD == "-h" ] || [ $CMD == "--help" ]; then
       shift
-      launch 'help' $*
+      launch 'help' "$@"
     elif [[ "$COMMANDS" =~ "$CMD" ]]; then
       shift
-      launch $CMD $*
+      launch $CMD "$@"
     else
       echo "ra: '$CMD' isn't a ra command. See 'ra help'"
       exit 1

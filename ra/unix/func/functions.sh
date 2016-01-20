@@ -3,6 +3,8 @@ DEVSTRAP=$DEVSTRAP_NAME
 DEVSTRAP_HOME="$HOME/$DEVSTRAP"
 DEVSTRAP_RA_PROFILE="$HOME/.$DEVSTRAP/ra/profile.d"
 DEVSTRAP_RA_LIBEXEC="$HOME/.$DEVSTRAP/ra/libexec"
+DEVSTRAP_SSH_CONFIG="$HOME/.$DEVSTRAP/ssh/config.d"
+DEVSTRAP_SSH_HOSTS="$HOME/.$DEVSTRAP/ssh/known_hosts.d"
 
 function commands() {
   find $LIBEXECDIR -name "*.sh" | $_XARGS basename -s ".sh"
@@ -15,10 +17,10 @@ function launch() {
   local CMD=$1
   shift
   if [ -f "$LIBEXECDIR/$CMD.sh" ]; then
-    source "$LIBEXECDIR/$CMD.sh" $*
+    source "$LIBEXECDIR/$CMD.sh" "$@"
   fi
   if [ -f "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" ]; then
-    source "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" $*
+    source "$DEVSTRAP_RA_LIBEXEC/$CMD.sh" "$@"
   fi
 }
 
@@ -96,22 +98,22 @@ function strap_action() {
     echo "ERROR: Missing 'target' module"
     exit 1
   else
-    FILE=$TARGET
-    if [[ ! $FILE =~ \.sh$ ]]; then
+    FILE="$TARGET"
+    if [[ ! "$FILE" =~ \.sh$ ]]; then
       FILE="$FILE.sh"
     fi
 
-    if [ -f $FILE ]; then
+    if [ -f "$FILE" ]; then
       echo "Executing local $FILE"
     else
       echo "Downloading $URL/straps/unix/$TARGET.sh"
       FILE="/tmp/$TARGET.sh"
-      rm -f $FILE
+      rm -f "$FILE"
       REMOTE="$URL/straps/unix/$TARGET.sh"
-      curl -sL $REMOTE > $FILE
+      curl -sL $REMOTE > "$FILE"
     fi
-    source $FILE $ACTION
-    [ ! -z "$REMOTE" ] && rm -f $FILE
+    source "$FILE" $ACTION
+    [ ! -z "$REMOTE" ] && rm -f "$FILE"
   fi
 }
 
@@ -139,6 +141,48 @@ function install_ra_init() {
 function uninstall_ra_init() {
   local NAME=$1
   rm -f "$DEVSTRAP_RA_PROFILE/$NAME.sh"
+}
+
+function install_ssh_config() {
+  local NAME=$1
+  local CONFIG=$2
+  mkdir -p "$DEVSTRAP_SSH_CONFIG"
+  echo "$CONFIG" > "$DEVSTRAP_SSH_CONFIG/$NAME"
+  _build_ssh_config
+}
+
+function uninstall_ssh_config() {
+  local NAME=$1
+  rm -f "$DEVSTRAP_SSH_CONFIG/$NAME"
+  _build_ssh_config
+}
+
+function _build_ssh_config() {
+  echo -n > $HOME/.ssh/config
+  for file in $DEVSTRAP_SSH_CONFIG/*; do
+    cat $file >> $HOME/.ssh/config
+  done
+}
+
+function install_ssh_known_hosts() {
+  local NAME=$1
+  local CONFIG=$2
+  mkdir -p "$DEVSTRAP_SSH_HOSTS"
+  echo "$CONFIG" > "$DEVSTRAP_SSH_HOSTS/$NAME"
+  _build_ssh_known_hosts
+}
+
+function uninstall_ssh_known_hosts() {
+  local NAME=$1
+  rm -f "$DEVSTRAP_SSH_HOSTS/$NAME"
+  _build_ssh_known_hosts
+}
+
+function _build_ssh_known_hosts() {
+  echo -n > $HOME/.ssh/known_hosts
+  for file in $DEVSTRAP_SSH_HOSTS/*; do
+    cat $file >> $HOME/.ssh/known_hosts
+  done
 }
 
 function download() {
