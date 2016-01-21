@@ -10,6 +10,8 @@ $commands = commands
 
 if (@($null, '-h', '--help') -contains $cmd) {
   exec 'help' $args
+} else ($cmd -eq 'init') {
+  & ("$psscriptroot\..\lib\init.ps1")
 } elseif ($commands -contains $cmd) {
   exec $cmd $args
 } else {

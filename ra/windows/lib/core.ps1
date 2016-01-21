@@ -1,5 +1,6 @@
 $devstrap = $env:DEVSTRAP_NAME, "devstrap" | select -first 1
 $devstrap_home = "~\$devstrap"
+$devstrap_ra_profile = "$env:LocalAppData\$devstrap\ra\profile.d"
 $devstrap_ra_libexec = "$env:LocalAppData\$devstrap\ra\libexec"
 
 function install_or_update($app) {
@@ -101,6 +102,57 @@ function install_ra_cmd($name, $script) {
 
 function uninstall_ra_cmd($name) {
   rm "$devstrap_ra_libexec\$name.ps1"
+}
+
+function install_ra_init($name, $script) {
+  ensure "$devstrap_ra_profile" > $null
+  $script | Out-File "$devstrap_ra_profile\$name.ps1" -Encoding UTF8
+}
+
+function uninstall_ra_init($name) {
+  rm "$devstrap_ra_profile\$name.ps1"
+}
+
+function install_ssh_config($name, $config) {
+  ensure "$env:LocalAppData\$devstrap\ssh\config.d" > $null
+  $script | Out-File "$env:LocalAppData\$devstrap\ssh\config.d\$name" -Encoding UTF8
+  _build_ssh_config
+}
+
+function uninstall_ssh_config($name) {
+  rm "$env:LocalAppData\$devstrap\ssh\config.d\$name"
+  _build_ssh_config
+}
+
+function _build_ssh_config() {
+  if (Test-Path $env:LocalAppData\$devstrap\ssh\config.d) {
+    $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\config.d\*
+    "" > ~\.ssh\config
+    ForEach ($file in $files) {
+      Get-Content -Path $file.fullName >> ~\.ssh\config
+    }
+  }
+}
+
+function install_ssh_known_host($name, $config) {
+  ensure "$env:LocalAppData\$devstrap\ssh\known_hosts.d" > $null
+  $script | Out-File "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name" -Encoding UTF8
+  _build_ssh_known_host
+}
+
+function uninstall_ssh_known_host($name) {
+  rm "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name"
+  _build_ssh_known_host
+}
+
+function _build_ssh_known_host() {
+  if (Test-Path $env:LocalAppData\$devstrap\ssh\known_hosts.d) {
+    $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\known_hosts.d\*
+    "" > ~\.ssh\known_hosts
+    ForEach ($file in $files) {
+      Get-Content -Path $file.fullName >> ~\.ssh\known_hosts
+    }
+  }
 }
 
 function download($name, $url) {
