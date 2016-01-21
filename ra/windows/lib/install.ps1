@@ -5,8 +5,8 @@ if(!(test-path $profile)) {
 }
 
 $text = gc $profile
-if(($text | sls 'ra') -eq $null) {
-  write-host 'adding ra to your powershell profile'
+if(($text | sls 'ra init') -eq $null) {
+  write-host 'Adding ra to your powershell profile'
 
   # read and write whole profile to avoid problems with line endings and encodings
   $new_profile = @($text) + "try { `$null = ra init } catch { }"
