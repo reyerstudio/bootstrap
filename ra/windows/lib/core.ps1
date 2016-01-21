@@ -115,7 +115,7 @@ function uninstall_ra_init($name) {
 
 function install_ssh_config($name, $config) {
   ensure "$env:LocalAppData\$devstrap\ssh\config.d" > $null
-  $script | Out-File "$env:LocalAppData\$devstrap\ssh\config.d\$name" -Encoding UTF8
+  $config | Out-File "$env:LocalAppData\$devstrap\ssh\config.d\$name" -Encoding ASCII
   _build_ssh_config
 }
 
@@ -127,16 +127,16 @@ function uninstall_ssh_config($name) {
 function _build_ssh_config() {
   if (Test-Path $env:LocalAppData\$devstrap\ssh\config.d) {
     $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\config.d\*
-    "" > ~\.ssh\config
+    rm ~\.ssh\config
     ForEach ($file in $files) {
-      Get-Content -Path $file.fullName >> ~\.ssh\config
+      Get-Content -Path $file.fullName | Out-File ~\.ssh\config -Encoding ASCII -Append
     }
   }
 }
 
 function install_ssh_known_hosts($name, $config) {
   ensure "$env:LocalAppData\$devstrap\ssh\known_hosts.d" > $null
-  $script | Out-File "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name" -Encoding UTF8
+  $config | Out-File "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name" -Encoding ASCII
   _build_ssh_known_hosts
 }
 
@@ -148,9 +148,9 @@ function uninstall_ssh_known_hosts($name) {
 function _build_ssh_known_hosts() {
   if (Test-Path $env:LocalAppData\$devstrap\ssh\known_hosts.d) {
     $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\known_hosts.d\*
-    "" > ~\.ssh\known_hosts
+    rm ~\.ssh\known_hosts
     ForEach ($file in $files) {
-      Get-Content -Path $file.fullName >> ~\.ssh\known_hosts
+      Get-Content -Path $file.fullName | Out-File ~\.ssh\known_hosts -Encoding ASCII -Append
     }
   }
 }
