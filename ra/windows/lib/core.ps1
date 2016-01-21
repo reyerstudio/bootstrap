@@ -127,7 +127,9 @@ function uninstall_ssh_config($name) {
 function _build_ssh_config() {
   if (Test-Path $env:LocalAppData\$devstrap\ssh\config.d) {
     $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\config.d\*
-    rm ~\.ssh\config
+    If (Test-Path ~\.ssh\config) {
+      rm ~\.ssh\config
+    }
     ForEach ($file in $files) {
       Get-Content -Path $file.fullName | Out-File ~\.ssh\config -Encoding ASCII -Append
     }
@@ -148,7 +150,9 @@ function uninstall_ssh_known_hosts($name) {
 function _build_ssh_known_hosts() {
   if (Test-Path $env:LocalAppData\$devstrap\ssh\known_hosts.d) {
     $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\known_hosts.d\*
-    rm ~\.ssh\known_hosts
+    If (Test-Path ~\.ssh\known_hosts) {
+      rm ~\.ssh\known_hosts
+    }
     ForEach ($file in $files) {
       Get-Content -Path $file.fullName | Out-File ~\.ssh\known_hosts -Encoding ASCII -Append
     }
