@@ -8,7 +8,7 @@ function strapping() {
   sudo concfg import -n solarized small
   $erroractionpreference = 'SilentlyContinue' # workaround for pshazz
   install_or_update pshazz
-  & "$psscriptroot\..\lib\install.ps1"
+  & "$(dirname $(dirname $(scoop which ra)))\lib\install.ps1"
 }
 
 function unstrapping() {

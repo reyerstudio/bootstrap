@@ -134,18 +134,18 @@ function _build_ssh_config() {
   }
 }
 
-function install_ssh_known_host($name, $config) {
+function install_ssh_known_hosts($name, $config) {
   ensure "$env:LocalAppData\$devstrap\ssh\known_hosts.d" > $null
   $script | Out-File "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name" -Encoding UTF8
-  _build_ssh_known_host
+  _build_ssh_known_hosts
 }
 
-function uninstall_ssh_known_host($name) {
+function uninstall_ssh_known_hosts($name) {
   rm "$env:LocalAppData\$devstrap\ssh\known_hosts.d\$name"
-  _build_ssh_known_host
+  _build_ssh_known_hosts
 }
 
-function _build_ssh_known_host() {
+function _build_ssh_known_hosts() {
   if (Test-Path $env:LocalAppData\$devstrap\ssh\known_hosts.d) {
     $files = Get-ChildItem $env:LocalAppData\$devstrap\ssh\known_hosts.d\*
     "" > ~\.ssh\known_hosts
