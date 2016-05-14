@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 local ACTION=$1
-local WSTORM_VERSION="11.0.3"
+local WSTORM_VERSION="2016.1.2"
 
 WEBSTORM_RA_INIT_UBUNTU='# IDEA 78860 - https://youtrack.jetbrains.com/issue/IDEA-78860
 export IBUS_ENABLE_SYNC_MODE=1'
@@ -10,7 +10,7 @@ function strapping() {
   case "$DISTRIB" in
     "osx")
       if [ ! -f /usr/local/bin/wstorm ]; then
-        download WebStorm-${WSTORM_VERSION}-custom-jdk-bundled.dmg https://download.jetbrains.com/webstorm/WebStorm-${WSTORM_VERSION}-custom-jdk-bundled.dmg
+        download WebStorm-${WSTORM_VERSION}.dmg https://download.jetbrains.com/webstorm/WebStorm-${WSTORM_VERSION}.dmg
         FILE=$RET
         open $FILE -W
         rm "$FILE"
