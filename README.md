@@ -38,6 +38,9 @@ Installation consists on deploying the core environment for supporting **ra** co
 
 ```$ bash <(curl -sL 'https://raw.githubusercontent.com/reyerstudio/devstrap/master/straps/unix/core.sh')```
 
+## Setup Devstrap on your profile
+```$ ra profile```
+
 ## Usage
 Devstrap processes are maanged by **ra** command line.
 Open a terminal, launch ```ra```
@@ -46,15 +49,18 @@ usage: ra <command> [<args]
 Some useful commands are:
 
 help     Show help for a command
+profile  Install profile environment
 strap    Strapping 'target' environment
-sync     Updating scoop and configured buckets
+sync     Updating scoop (or brew) and configured taps
 unstrap  Unstrapping 'target' environment
 upgrade  Upgrade apps
 version  Get ra version
 
-
 type 'ra help <command>' to get help for a specific command
 ```
+
+## Further information
+See [Wiki](https://github.com/reyerstudio/devstrap/wiki)
 
 ## References
 **devstrap** processes are based on
