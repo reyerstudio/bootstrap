@@ -20,7 +20,7 @@ case "$(uname -s)" in
     add_to_path "$(brew --prefix)/bin"
     ;;
   "Linux")
-    add_to_path "$HOME/.linuxbrew/bin"
+    add_to_path "/home/linuxbrew/.linuxbrew/bin"
     ;;
 esac
 
