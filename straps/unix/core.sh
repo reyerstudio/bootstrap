@@ -87,7 +87,7 @@ function core_linux() {
   esac
 
   # Install Homebrew if not installed yet
-  which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+  which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 
   # Export PATH with linuxbrew
   add_to_path $HOME/.linuxbrew/bin
