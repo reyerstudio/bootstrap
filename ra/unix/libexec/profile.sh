@@ -20,7 +20,7 @@ case "\$(uname -s)" in
     source /usr/local/bin/ra init
     ;;
   "Linux")
-    source \$HOME/.linuxbrew/bin/ra init
+    source /home/linuxbrew/.linuxbrew/bin/ra init
     ;;
 esac
 PROFILE
