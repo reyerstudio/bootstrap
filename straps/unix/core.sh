@@ -90,7 +90,7 @@ function core_linux() {
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 
   # Export PATH with linuxbrew
-  add_to_path $HOME/.linuxbrew/bin
+  add_to_path /home/linuxbrew/.linuxbrew/bin
 }
 
 function core_darwin() {
