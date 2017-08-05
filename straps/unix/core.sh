@@ -93,7 +93,7 @@ function core_linux() {
   add_to_path /home/linuxbrew/.linuxbrew/bin
 
   # Install extra formulae
-  for FORMULAE in fzf; do 
+  for FORMULAE in fzf vim; do 
     brew_install_or_upgrade $FORMULAE
   done
 }
@@ -105,7 +105,7 @@ function core_darwin() {
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   # ra requirements
-  for FORMULAE in bash bash-completion colordiff coreutils dialog dos2unix fzf jq mercurial ncdu tree tmux wget; do
+  for FORMULAE in bash bash-completion colordiff coreutils dialog dos2unix fzf jq mercurial ncdu tree tmux vim wget; do
     brew_install_or_upgrade $FORMULAE
   done
 }

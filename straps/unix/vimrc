@@ -1,0 +1,94 @@
+" Configure plugins
+call plug#begin('~/.vim/plugged')
+
+" Defaults everyone can agree on
+Plug 'tpope/vim-sensible'
+" Low-contrast Vim color scheme based on Seoul Colors
+Plug 'junegunn/seoul256.vim'
+" Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
+" Syntax highlighting for Dart in Vim
+Plug 'dart-lang/dart-vim-plugin'
+" Fuzzy file, buffer, mru, tag, etc finder
+Plug 'ctrlpvim/ctrlp.vim'
+" A tree explorer plugin for vim
+Plug 'scrooloose/nerdtree'
+" A plugin of NERDTree showing git status
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" fzf ❤️  vim
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" A light and configurable statusline/tabline plugin for Vim
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+" Change the mapleader from \ to ,
+let mapleader=","
+let maplocalleader="\\"
+
+" Plugins Configuration {{{
+" - seoul256 config {{
+colo seoul256
+" - }}
+
+" - syntastic config {{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+" - }}
+
+" - NERDTree settings {{{
+map <C-n> :NERDTreeToggle<CR>
+
+" Store the bookmarks file
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks=1
+
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=0
+
+" Don't quit on opening files from the tree
+let NERDTreeQuitOnOpen=0
+
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
+
+" Open NERDTree automatically when vim starts up on opening a directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" - }}
+
+" }}}
+
+" Change the mapleader from \ to ,
+let mapleader=","
+let maplocalleader="\\"
+
+" Editing behaviour {{{
+set showmode                    " always show what mode we're currently editing in
+set nowrap                      " don't wrap lines
+set tabstop=2                   " a tab is four spaces
+set softtabstop=2               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set expandtab                   " expand tabs by default (overloadable per file type later)
+set shiftwidth=2                " number of spaces to use for autoindenting
+set number                      " always show line numbers
+" }}}
+
+" Vim behaviour {{{
+set nobackup                    " do not keep backup files, it's 70's style cluttering
+set noswapfile                  " do not write annoying intermediate swap files,
+set title                       " change the terminal's title
+set visualbell                  " don't beep
+set noerrorbells                " don't beep
+" }}}
