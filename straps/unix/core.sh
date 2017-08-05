@@ -65,7 +65,7 @@ function core_linux() {
       # linuxbrew requirements
       sudo apt-get -y install build-essential curl git m4 python-setuptools ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
       # ra requirements
-      sudo apt-get -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time vim wget
+      sudo apt-get -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial netcat openssl patch rsync sed sudo tar time tmux vim wget
       # Enable HTTPS for apt
       sudo apt-get -y install apt-transport-https
       # Install Java 8
@@ -79,7 +79,7 @@ function core_linux() {
       # linuxbrew requirements
       sudo yum -y groupinstall 'Development Tools' && sudo yum -y install curl git irb m4 python-setuptools ruby texinfo bzip2-devel curl-devel expat-devel ncurses-devel zlib-devel
       # ra requirements
-      sudo yum -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial nmap-ncat openssl patch rsync sed sudo tar time vim wget
+      sudo yum -y install coreutils curl diffutils findutils gawk git grep gzip jq less mercurial nmap-ncat openssl patch rsync sed sudo tar time tmux vim wget
       ;;
     *)
       echo "$DISTRIB distribution not supported"
@@ -91,6 +91,11 @@ function core_linux() {
 
   # Export PATH with linuxbrew
   add_to_path /home/linuxbrew/.linuxbrew/bin
+
+  # Install extra formulae
+  for FORMULAE in fzf; do 
+    brew_install_or_upgrade $FORMULAE
+  done
 }
 
 function core_darwin() {
@@ -100,7 +105,7 @@ function core_darwin() {
   which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   # ra requirements
-  for FORMULAE in bash bash-completion colordiff coreutils dialog dos2unix jq mercurial ncdu tree wget; do
+  for FORMULAE in bash bash-completion colordiff coreutils dialog dos2unix fzf jq mercurial ncdu tree tmux wget; do
     brew_install_or_upgrade $FORMULAE
   done
 }
