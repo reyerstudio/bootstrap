@@ -83,7 +83,7 @@ function upgrade() {
     "ubuntu")
       EXTS="/usr/lib/password-store/extensions"
       INSTALL="sudo make install"
-      sudo bash -c 'curl -q https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu > /usr/local/bin/passmenu'
+      sudo bash -c "curl -q https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu > /usr/local/bin/passmenu"
       sudo chmod 755 /usr/local/bin/passmenu
       ;;
     *)
@@ -156,7 +156,7 @@ function strapping() {
       brew install oath-toolkit pass
       ;;
     "ubuntu")
-      sudo apt-get install oathtool pass
+      sudo apt-get install dmenu oathtool pass
       ;;
     *)
       echo "$DISTRIB not supported"
