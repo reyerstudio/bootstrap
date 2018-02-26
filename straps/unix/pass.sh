@@ -84,7 +84,7 @@ function upgrade() {
       EXTS="/usr/lib/password-store/extensions"
       INSTALL="sudo make install"
       sudo curl -q https://git.zx2c4.com/password-store/plain/contrib/dmenu/passmenu > /usr/local/bin/passmenu
-      chmod 755 /usr/local/bin/passmenu
+      sudo chmod 755 /usr/local/bin/passmenu
       ;;
     *)
       echo "$DISTRIB not supported"
@@ -110,7 +110,7 @@ function upgrade() {
   cd
   git clone https://github.com/palortoff/pass-extension-tail /tmp/pass-tail
   cd /tmp/pass-tail/src
-  install tail.bash tailedit.bash $EXTS
+  sudo install tail.bash tailedit.bash $EXTS
   rm -rf /tmp/pass-tail
 }
 
@@ -156,7 +156,7 @@ function strapping() {
       brew install oath-toolkit pass
       ;;
     "ubuntu")
-      sudo apt-get install oath-toolkit pass
+      sudo apt-get install oathtool pass
       ;;
     *)
       echo "$DISTRIB not supported"
@@ -186,7 +186,7 @@ function unstrapping() {
   esac
   uninstall_ra_cmd pass
   uninstall_ra_init pass
-  rm -f /usr/local/bin/passmenu
+  sudo rm -f /usr/local/bin/passmenu
 }
 
 $ACTION
