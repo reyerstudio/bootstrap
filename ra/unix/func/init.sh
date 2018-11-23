@@ -15,20 +15,6 @@ function remove_from_path() {
   PATH=$(echo $PATH | sed -e 's;:\?$DIR;;' -e 's;$DIR:\?');
 }
 
-case "$(uname -s)" in
-  "Darwin")
-    add_to_path "$(brew --prefix)/bin"
-    ;;
-  "Linux")
-    add_to_path "/home/linuxbrew/.linuxbrew/bin"
-    ;;
-esac
-
-# Source console profile
-for file in $(dirname "$($_READLINK -f "${BASH_SOURCE[0]}")")/../console/*.sh; do
-  [ -f $file ] && [ -r $file ] && source $file
-done
-
 # Source straps profile
 if [ -d "$HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d" ]; then
   for file in $HOME/.${DEVSTRAP_NAME:-devstrap}/ra/profile.d/*.sh; do
